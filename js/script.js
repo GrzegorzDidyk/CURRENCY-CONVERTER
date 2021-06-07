@@ -33,19 +33,19 @@ formElement.addEventListener("submit", (event) => {
     event.preventDefault();
     let currency = currenyElement.value;
     let amountPln = +amountPlnElement.value;
-    let score;
+    let result;
     switch (currency) {
         case "EUR":
-            score = (amountPln / euro);
+            result = (amountPln / euro);
             break;
         case "USD":
-            score = (amountPln / dolar);
+            result = (amountPln / dolar);
             break;
         case "GBP":
-            score = (amountPln / funt);
+            result = (amountPln / funt);
             break;
     }
-    paragraphElement.innerHTML = `Za ${amountPln} PLN otrzymasz <strong> ${score.toFixed(2)} ${currency} </strong>`; 
+    paragraphElement.innerHTML = `Za ${amountPln} PLN otrzymasz <strong> ${result.toFixed(2)} ${currency} </strong>`; 
 });
 
 formElement.addEventListener("reset", () => {
