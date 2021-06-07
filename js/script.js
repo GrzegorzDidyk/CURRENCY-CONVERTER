@@ -49,7 +49,7 @@ formElement.addEventListener("submit", (event) => {
 });
 
 formElement.addEventListener("reset", () => {
-    paragraphElement.innerHTML = ``;
+    paragraphElement.innerHTML = `Za x PLN otrzymasz`;
 
 
 });
