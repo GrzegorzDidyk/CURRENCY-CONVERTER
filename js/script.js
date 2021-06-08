@@ -8,7 +8,7 @@
     const dolar = 3.7869;
     const funt = 5.3191;
 
-    const currencySelection =  (event) => {
+    const currencySelection = (event) => {
         const currency = currencyElement.value;
         switch (currency) {
             case "EUR":
@@ -25,7 +25,7 @@
                 break;
         };
     };
-    
+
     const calculateResult = (amountPln, currency) => {
         switch (currency) {
             case "EUR":
@@ -51,7 +51,7 @@
         updateResultText(amountPln, result, currency);
     };
 
-    
+
     const updateResultText = (amountPln, result, currency) => {
         paragraphElement.innerHTML = `Za ${amountPln} PLN otrzymasz <strong> ${result.toFixed(2)} ${currency} </strong>`;
     };
