@@ -1,55 +1,71 @@
-let amountPlnElement = document.querySelector(".js-amountPln");
-let currenyElement = document.querySelector(".js-currencySellect");
-let exchangeRate = document.querySelector(".js-exchangeRate");
-let paragraphElement = document.querySelector(".js-form__paragraph");
-let formElement = document.querySelector(".js-form");
+{
+    const exchangeRateElement = document.querySelector(".js-exchangeRate");
+    const formElement = document.querySelector(".js-form");
+    const currencyElement = document.querySelector(".js-currencySellect");
+    const paragraphElement = document.querySelector(".js-form__paragraph");
+    const amountPlnElement = document.querySelector(".js-amountPln");
+    const euro = 4.5658;
+    const dolar = 3.7869;
+    const funt = 5.3191;
 
-let euro = 4.5658;
-let dolar = 3.7869;
-let funt = 5.3191;
+    const currencySelection =  (event) => {
+        const currency = currencyElement.value;
+        switch (currency) {
+            case "EUR":
+                exchangeRateElement.value = euro;
+                break;
+            case "USD":
+                exchangeRateElement.value = dolar;
+                break;
+            case "GBP":
+                exchangeRateElement.value = funt;
+                break;
+            case "":
+                exchangeRateElement.value = "";
+                break;
+        };
+    };
+    
+    const calculateResult = (amountPln, currency) => {
+        switch (currency) {
+            case "EUR":
+                return amountPln / euro;
 
+            case "USD":
+                return amountPln / dolar;
 
+            case "GBP":
+                return amountPln / funt;
 
-formElement.addEventListener("input", (event) => {
-    let currency = currenyElement.value;
-    switch (currency) {
-        case "EUR":
-            exchangeRate.value = euro;
-            break;
-        case "USD":
-            exchangeRate.value = dolar;
-            break;
-        case "GBP":
-            exchangeRate.value = funt;
-            break;
-        case "":
-            exchangeRate.value = "";
-            break;
-    }
-});
+        };
+    };
 
+    const onFormSubmit = (event) => {
+        event.preventDefault();
 
-formElement.addEventListener("submit", (event) => {
-    event.preventDefault();
-    let currency = currenyElement.value;
-    let amountPln = +amountPlnElement.value;
-    let result;
-    switch (currency) {
-        case "EUR":
-            result = (amountPln / euro);
-            break;
-        case "USD":
-            result = (amountPln / dolar);
-            break;
-        case "GBP":
-            result = (amountPln / funt);
-            break;
-    }
-    paragraphElement.innerHTML = `Za ${amountPln} PLN otrzymasz <strong> ${result.toFixed(2)} ${currency} </strong>`; 
-});
+        const currency = currencyElement.value;
+        const amountPln = +amountPlnElement.value;
 
-formElement.addEventListener("reset", () => {
-    paragraphElement.innerHTML = `Za x PLN otrzymasz`;
+        const result = calculateResult(amountPln, currency);
 
+        updateResultText(amountPln, result, currency);
+    };
 
-});
+    
+    const updateResultText = (amountPln, result, currency) => {
+        paragraphElement.innerHTML = `Za ${amountPln} PLN otrzymasz <strong> ${result.toFixed(2)} ${currency} </strong>`;
+    };
+
+    const resetForm = () => {
+        paragraphElement.innerHTML = `Za x PLN otrzymasz`;
+    };
+
+    const init = () => {
+        formElement.addEventListener("input", currencySelection);
+
+        formElement.addEventListener("submit", onFormSubmit);
+
+        formElement.addEventListener("reset", resetForm);
+    };
+    init();
+}
