@@ -4,21 +4,21 @@
     const currencyElement = document.querySelector(".js-currencySellect");
     const paragraphElement = document.querySelector(".js-form__paragraph");
     const amountPlnElement = document.querySelector(".js-amountPln");
-    const euro = 4.5658;
-    const dolar = 3.7869;
-    const funt = 5.3191;
+    const euroRate = 4.5658;
+    const dolarRate = 3.7869;
+    const funtRate = 5.3191;
 
     const currencySelection = (event) => {
         const currency = currencyElement.value;
         switch (currency) {
             case "EUR":
-                exchangeRateElement.value = euro;
+                exchangeRateElement.value = euroRate;
                 break;
             case "USD":
-                exchangeRateElement.value = dolar;
+                exchangeRateElement.value = dolarRate;
                 break;
             case "GBP":
-                exchangeRateElement.value = funt;
+                exchangeRateElement.value = funtRate;
                 break;
             case "":
                 exchangeRateElement.value = "";
@@ -29,13 +29,13 @@
     const calculateResult = (amountPln, currency) => {
         switch (currency) {
             case "EUR":
-                return amountPln / euro;
+                return amountPln / euroRate;
 
             case "USD":
-                return amountPln / dolar;
+                return amountPln / dolarRate;
 
             case "GBP":
-                return amountPln / funt;
+                return amountPln / funtRate;
 
         };
     };
@@ -50,7 +50,6 @@
 
         updateResultText(amountPln, result, currency);
     };
-
 
     const updateResultText = (amountPln, result, currency) => {
         paragraphElement.innerHTML = `Za ${amountPln} PLN otrzymasz <strong> ${result.toFixed(2)} ${currency} </strong>`;
@@ -67,5 +66,6 @@
 
         formElement.addEventListener("reset", resetForm);
     };
+
     init();
 }
