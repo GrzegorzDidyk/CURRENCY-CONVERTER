@@ -8,6 +8,10 @@ html {
 
 body {
     font-family: 'Lato', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
     background-image: url("../images/picture.jpg");
     background-size: cover;
     background-position: center;
